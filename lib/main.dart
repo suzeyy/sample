@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sample/hotel.dart';
 import 'icon.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -19,10 +22,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             backgroundColor: Colors.pink.shade50,
+            resizeToAvoidBottomInset: true,
             extendBody: true,
             body: Center(
               child: Padding(
@@ -50,7 +55,8 @@ class _MyAppState extends State<MyApp> {
                                 Expanded(
                                   child: ListTile(
                                     leading: CircleAvatar(
-                                      backgroundImage: AssetImage('assets/picture.jpg'),
+                                      backgroundImage:
+                                          AssetImage('assets/picture.jpg'),
                                     ),
                                     title: Text(
                                       'Hello',
@@ -117,7 +123,7 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               onChanged: (value) {
-                                // Handle search text changes
+// Handle search text changes
                               },
                             ),
                           ),
@@ -127,13 +133,17 @@ class _MyAppState extends State<MyApp> {
                             child: Row(
                               children: [
                                 SizedBox(width: 10),
-                                buildIconContainer('assets/hotel.svg', 'Hotel', Colors.red),
+                                buildIconContainer(
+                                    'assets/hotel.svg', 'Hotel', Colors.red),
                                 SizedBox(width: 10),
-                                buildIconContainer('assets/flight.svg', 'Flight', Colors.green),
+                                buildIconContainer('assets/flight.svg',
+                                    'Flight', Colors.green),
                                 SizedBox(width: 10),
-                                buildIconContainer('assets/location.svg', 'Location', Colors.purple.shade300),
+                                buildIconContainer('assets/location.svg',
+                                    'Location', Colors.purple.shade300),
                                 SizedBox(width: 10),
-                                buildIconContainer('assets/food.svg', 'Food', Colors.blueAccent.shade700),
+                                buildIconContainer('assets/food.svg', 'Food',
+                                    Colors.blueAccent.shade700),
                               ],
                             ),
                           ),
@@ -152,7 +162,8 @@ class _MyAppState extends State<MyApp> {
                                 ),
                                 Text(
                                   'See All',
-                                  style: TextStyle(color: Colors.pink, fontSize: 13),
+                                  style: TextStyle(
+                                      color: Colors.pink, fontSize: 13),
                                 ),
                               ],
                             ),
@@ -163,11 +174,26 @@ class _MyAppState extends State<MyApp> {
                             child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: [
-                                buildHotelContainer('Emeralda Hotel', 'Paris, France', '\$30', 'assets/hotel1.jpg', 4.9),
+                                buildHotelContainer(
+                                    'Emeralda Hotel',
+                                    'Paris, France',
+                                    '\$30',
+                                    'assets/hotel1.jpg',
+                                    4.9),
                                 SizedBox(width: 20),
-                                buildHotelContainer('Eco plus Hotel', 'Paris, France', '\$40', 'assets/hotel2.jpeg', 4.6),
+                                buildHotelContainer(
+                                    'Eco plus Hotel',
+                                    'Paris, France',
+                                    '\$40',
+                                    'assets/hotel2.jpeg',
+                                    4.6),
                                 SizedBox(width: 20),
-                                buildHotelContainer('Herald Hotel', 'Paris, France', '\$30', 'assets/hotel3.jpeg', 4.9),
+                                buildHotelContainer(
+                                    'Herald Hotel',
+                                    'Paris, France',
+                                    '\$30',
+                                    'assets/hotel3.jpeg',
+                                    4.9),
                                 SizedBox(width: 20),
                               ],
                             ),
@@ -187,78 +213,258 @@ class _MyAppState extends State<MyApp> {
                                 ),
                                 Text(
                                   'See All',
-                                  style: TextStyle(color: Colors.pink, fontSize: 13),
+                                  style: TextStyle(
+                                      color: Colors.pink, fontSize: 13),
                                 ),
                               ],
                             ),
                           ),
                           SizedBox(height: 10),
-                          FractionallySizedBox(
-                            widthFactor: 0.99,
-                            child: Container(
-                              height: 120,
-                              padding: EdgeInsets.all(16),
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.yellow,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 8,
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            margin: EdgeInsets.all(10.0),
+                            height: 130,
+                            width: screenWidth * 0.9,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            child: Wrap(
+                              children: [
+                                FractionallySizedBox(
+                                    widthFactor: 0.13,
                                     child: Container(
-                                      // color: Colors.red,
-                                      height: double.infinity,
-                                      child: ListTile(
-                                        contentPadding: EdgeInsets.zero,
-                                        leading: Container(
-                                          width: 80,
-                                          height: double.infinity,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8),
-                                            // color: Colors.blue,
-                                            image: DecorationImage(
-                                              image: AssetImage('assets/hotel4.jpeg'),
-                                              fit: BoxFit.fill,
-                                            )
-                                          ),
-                                        ),
-                                        title: Text('Title'),
-                                        subtitle: Text('Subtitle'),
+                                      height: 110,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/hotel4.jpeg'),
+                                              fit: BoxFit.cover)),
+                                    )),
+                                SizedBox(width: 15),
+                                FractionallySizedBox(
+                                  widthFactor: 0.5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'President Hotel',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17),
                                       ),
-
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.location_on_outlined,
+                                            size: 17,
+                                            color: Colors.grey.withOpacity(0.9),
+                                          ),
+                                          Text(
+                                            'Paris, France',
+                                            style: TextStyle(
+                                                color: Colors.grey
+                                                    .withOpacity(0.9)),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 15),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '\$30',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '/per night',
+                                            style: TextStyle(
+                                                color: Colors.grey
+                                                    .withOpacity(0.9)),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                FractionallySizedBox(
+                                  widthFactor: 0.35,
+                                  child: Container(
+                                    // color: Colors.green,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                            Text(
+                                              '4.9',
+                                              style: TextStyle(
+                                                  color: Colors.pink,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text(
+                                          '(4,599 reviews)',
+                                          style: TextStyle(
+                                              color:
+                                                  Colors.grey.withOpacity(0.9)),
+                                        ),
+                                        SizedBox(height: 15),
+                                        Icon(Icons.bookmark, color: Colors.pink, size: 30,)
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(width: 10),
-                                  Expanded(
-                                    flex: 2,
+                                  // child: Image.asset('assets/hotel4.jpeg'),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            margin: EdgeInsets.all(10.0),
+                            height: 130,
+                            width: screenWidth * 0.9,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            child: Wrap(
+                              children: [
+                                FractionallySizedBox(
+                                    widthFactor: 0.13,
                                     child: Container(
-                                      color: Colors.blue,
-                                    ),
-                                  )
-                                ],
-                              ),
+                                      height: 110,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/hotel4.jpeg'),
+                                              fit: BoxFit.cover)),
+                                    )),
+                                SizedBox(width: 15),
+                                FractionallySizedBox(
+                                  widthFactor: 0.5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'President Hotel',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.location_on_outlined,
+                                            size: 17,
+                                            color: Colors.grey.withOpacity(0.9),
+                                          ),
+                                          Text(
+                                            'Paris, France',
+                                            style: TextStyle(
+                                                color: Colors.grey
+                                                    .withOpacity(0.9)),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 15),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '\$30',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '/per night',
+                                            style: TextStyle(
+                                                color: Colors.grey
+                                                    .withOpacity(0.9)),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                FractionallySizedBox(
+                                  widthFactor: 0.35,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.end,
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.yellow,
+                                          ),
+                                          Text(
+                                            '4.9',
+                                            style: TextStyle(
+                                                color: Colors.pink,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '(4,599 reviews)',
+                                        style: TextStyle(
+                                            color:
+                                            Colors.grey.withOpacity(0.9)),
+                                      ),
+                                      SizedBox(height: 15),
+                                      Icon(Icons.bookmark, color: Colors.pink, size: 30,)
+                                    ],
+                                  ),
+                                  // child: Image.asset('assets/hotel4.jpeg'),
+                                ),
+                              ],
                             ),
-                          )
-
-
-
-
-                              ]),
-                            ),
-                          )
-                ),
+                          ),
+                          SizedBox(
+                            height: 150,
+                          ),
+                        ],
                       ),
                     ),
-
+                  ),
+                ),
+              ),
+            ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: _currentIndex,
               onTap: (index) {
                 setState(() {
                   _currentIndex = index;
                 });
-                // Handle navigation or other actions based on index
+// Handle navigation or other actions based on index
               },
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
@@ -301,7 +507,6 @@ class _MyAppState extends State<MyApp> {
                 fontWeight: FontWeight.bold,
               ),
               type: BottomNavigationBarType.fixed,
-    )
-        ));
+            )));
   }
 }
