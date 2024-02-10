@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sample/booked.dart';
 import 'package:sample/hotel.dart';
+import 'package:sample/search.dart';
+import 'bottom_navbar.dart';
 import 'icon.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +20,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -93,40 +93,9 @@ class _MyAppState extends State<MyApp> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Hotel, Flight, Place, Food...',
-                                prefixIcon: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 8.0,
-                                    bottom: 8.0,
-                                    left: 20.0,
-                                    right: 10.0,
-                                  ),
-                                  child: SvgPicture.asset('assets/search.svg'),
-                                ),
-                                suffixIcon: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 8.0,
-                                    bottom: 8.0,
-                                    right: 20.0,
-                                  ),
-                                  child: SvgPicture.asset(
-                                    'assets/apps.svg',
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                              onChanged: (value) {
-// Handle search text changes
-                              },
-                            ),
-                          ),
+
+                          Search(),
+
                           SizedBox(height: 15),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -220,237 +189,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                           ),
                           SizedBox(height: 10),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            margin: EdgeInsets.all(10.0),
-                            height: 130,
-                            width: screenWidth * 0.9,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                            ),
-                            child: Wrap(
-                              children: [
-                                FractionallySizedBox(
-                                    widthFactor: 0.13,
-                                    child: Container(
-                                      height: 110,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/hotel4.jpeg'),
-                                              fit: BoxFit.cover)),
-                                    )),
-                                SizedBox(width: 15),
-                                FractionallySizedBox(
-                                  widthFactor: 0.5,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'President Hotel',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.location_on_outlined,
-                                            size: 17,
-                                            color: Colors.grey.withOpacity(0.9),
-                                          ),
-                                          Text(
-                                            'Paris, France',
-                                            style: TextStyle(
-                                                color: Colors.grey
-                                                    .withOpacity(0.9)),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 15),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            '\$30',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            '/per night',
-                                            style: TextStyle(
-                                                color: Colors.grey
-                                                    .withOpacity(0.9)),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                FractionallySizedBox(
-                                  widthFactor: 0.35,
-                                  child: Container(
-                                    // color: Colors.green,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Icon(
-                                              Icons.star,
-                                              color: Colors.yellow,
-                                            ),
-                                            Text(
-                                              '4.9',
-                                              style: TextStyle(
-                                                  color: Colors.pink,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
-                                        Text(
-                                          '(4,599 reviews)',
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.grey.withOpacity(0.9)),
-                                        ),
-                                        SizedBox(height: 15),
-                                        Icon(Icons.bookmark, color: Colors.pink, size: 30,)
-                                      ],
-                                    ),
-                                  ),
-                                  // child: Image.asset('assets/hotel4.jpeg'),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            margin: EdgeInsets.all(10.0),
-                            height: 130,
-                            width: screenWidth * 0.9,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                            ),
-                            child: Wrap(
-                              children: [
-                                FractionallySizedBox(
-                                    widthFactor: 0.13,
-                                    child: Container(
-                                      height: 110,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/hotel4.jpeg'),
-                                              fit: BoxFit.cover)),
-                                    )),
-                                SizedBox(width: 15),
-                                FractionallySizedBox(
-                                  widthFactor: 0.5,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'President Hotel',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.location_on_outlined,
-                                            size: 17,
-                                            color: Colors.grey.withOpacity(0.9),
-                                          ),
-                                          Text(
-                                            'Paris, France',
-                                            style: TextStyle(
-                                                color: Colors.grey
-                                                    .withOpacity(0.9)),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 15),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            '\$30',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            '/per night',
-                                            style: TextStyle(
-                                                color: Colors.grey
-                                                    .withOpacity(0.9)),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                FractionallySizedBox(
-                                  widthFactor: 0.35,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.end,
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                          ),
-                                          Text(
-                                            '4.9',
-                                            style: TextStyle(
-                                                color: Colors.pink,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        '(4,599 reviews)',
-                                        style: TextStyle(
-                                            color:
-                                            Colors.grey.withOpacity(0.9)),
-                                      ),
-                                      SizedBox(height: 15),
-                                      Icon(Icons.bookmark, color: Colors.pink, size: 30,)
-                                    ],
-                                  ),
-                                  // child: Image.asset('assets/hotel4.jpeg'),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 150,
-                          ),
+                          Booked(),
                         ],
                       ),
                     ),
@@ -458,55 +197,8 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: _currentIndex,
-              onTap: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-// Handle navigation or other actions based on index
-              },
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/home.svg',
-                    color: _currentIndex == 0 ? Colors.pink : Colors.grey,
-                  ),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/search.svg',
-                    color: _currentIndex == 1 ? Colors.pink : Colors.grey,
-                  ),
-                  label: 'Search',
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/memo1.svg',
-                    color: _currentIndex == 2 ? Colors.pink : Colors.grey,
-                  ),
-                  label: 'Booking',
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/profile.svg',
-                    color: _currentIndex == 3 ? Colors.pink : Colors.grey,
-                  ),
-                  label: 'Profile',
-                ),
-              ],
-              selectedItemColor: Colors.pink,
-              unselectedItemColor: Colors.grey,
-              selectedLabelStyle: TextStyle(
-                color: Colors.pink,
-                fontWeight: FontWeight.bold,
-              ),
-              unselectedLabelStyle: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-              ),
-              type: BottomNavigationBarType.fixed,
-            )));
+          bottomNavigationBar: bottomNavBar(),
+              )
+    );
   }
 }
